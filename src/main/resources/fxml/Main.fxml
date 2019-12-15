@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane prefHeight="462.0" prefWidth="584.0" style="-fx-background-color: #37393d;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.dimagor555.eyesave.controllers.MainUIController">
+   <children>
+      <Text fill="WHITE" layoutX="15.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eyesave will notificate you to take a break for your eyes" wrappingWidth="553.7294921875">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Button fx:id="hideBtn" layoutX="377.0" layoutY="404.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Hide to tray" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="exitBtn" layoutX="248.0" layoutY="404.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Exit" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="createNewProfileBtn" layoutX="77.0" layoutY="157.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Create new" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="17.0" layoutY="96.0" text="Select:" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+      <Label layoutX="18.0" layoutY="159.0" text="or" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="profileSelectChoiceBox" layoutX="111.0" layoutY="91.0" prefHeight="26.0" prefWidth="459.0" stylesheets="@../css/choiceBoxStyle.css" />
+      <Button fx:id="deleteBtn" layoutX="235.0" layoutY="282.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Delete" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <ChoiceBox fx:id="profileDeleteChoiceBox" layoutX="111.0" layoutY="231.0" prefHeight="26.0" prefWidth="459.0" stylesheets="@../css/choiceBoxStyle.css" />
+      <Label layoutX="17.0" layoutY="236.0" text="Delete:" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="deleteErrLabel" alignment="CENTER" layoutX="-1.0" layoutY="341.0" prefHeight="25.0" prefWidth="584.0" text="Can not be deleted. This profile is in use" textFill="#e47272" visible="false">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
