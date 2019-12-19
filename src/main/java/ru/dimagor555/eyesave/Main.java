@@ -34,11 +34,16 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(event -> SystemTray.addAppToTray());
         primaryStage.setResizable(false);
         Platform.setImplicitExit(false);
-        showStage();
 
         notificator = new Notificator();
         notificator.setProfile(Settings.currentProfile);
         notificator.start();
+
+        if (!Settings.hideInTrayAtFirstRun) {
+            showStage();
+        } else {
+            SystemTray.addAppToTray();
+        }
     }
 
     public static void showStage() {

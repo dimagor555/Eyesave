@@ -21,3 +21,18 @@
     -fx-text-fill: #fff;
     -fx-font-size: 20;
 }
+
+.check-box .box {
+-fx-background-color: #404245;
+-fx-border-color: #404245;
+-fx-border-radius: 3px;
+
+}
+
+.check-box:selected .mark {
+-fx-background-color: #fff;
+}
+
+.check-box:selected .box {
+-fx-background-color: #303134;
+}

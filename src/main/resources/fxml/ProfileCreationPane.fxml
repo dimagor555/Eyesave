@@ -44,7 +44,7 @@
             <Font size="25.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="durationUnitChoiceBox" layoutX="420.0" layoutY="186.0" prefHeight="48.0" prefWidth="174.0" stylesheets="@../css/choiceBoxStyle.css" />
+      <ChoiceBox fx:id="durationUnitChoiceBox" layoutX="420.0" layoutY="186.0" prefHeight="48.0" prefWidth="174.0" stylesheets="@../css/MainUIStyleSheet.css" />
       <Label alignment="CENTER" layoutX="7.0" layoutY="14.0" prefHeight="61.0" prefWidth="609.0" text="Create new profile" textFill="WHITE">
          <font>
             <Font size="50.0" />
