@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -40,6 +41,9 @@ public class MainUIController {
     @FXML
     private Label deleteErrLabel;
 
+    @FXML
+    private CheckBox hideOnTrayCheckBox;
+
     public MainUIController() {
 
     }
@@ -52,6 +56,7 @@ public class MainUIController {
         profileSelectChoiceBox = (ChoiceBox<Profile>) root.lookup("#profileSelectChoiceBox");
         profileDeleteChoiceBox = (ChoiceBox<Profile>) root.lookup("#profileDeleteChoiceBox");
         deleteErrLabel = (Label) root.lookup("#deleteErrLabel");
+        hideOnTrayCheckBox = (CheckBox) root.lookup("#hideOnTrayCheckBox");
 
         ButtonGraphicEffects.addBtnClickEffect(hideBtn);
         hideBtn.setOnAction(event -> hideToTray());
@@ -64,7 +69,12 @@ public class MainUIController {
 
         profileSelectChoiceBox.setOnAction(event ->
                 Settings.changeCurrentProfile(profileSelectChoiceBox.getValue()));
+
+        hideOnTrayCheckBox.setOnAction(event ->
+                Settings.changeHideInTrayAtFirstRun(hideOnTrayCheckBox.isSelected()));
+
         updateProfileChoiceBoxesItems();
+        hideOnTrayCheckBox.setSelected(Settings.hideInTrayAtFirstRun);
     }
 
     private void createNewProfile() {

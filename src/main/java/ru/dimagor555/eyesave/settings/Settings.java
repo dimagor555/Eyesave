@@ -4,6 +4,7 @@ import ru.dimagor555.eyesave.Main;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Settings {
 
@@ -14,6 +15,7 @@ public class Settings {
 
     private static ArrayList<Profile> profiles = new ArrayList<>();
     public static Profile currentProfile;
+    public static boolean hideInTrayAtFirstRun = false;
 
     public static void addProfile(Profile profile) {
         profiles.add(profile);
@@ -37,16 +39,22 @@ public class Settings {
         }
         var lastCurrProfile = currentProfile;
         currentProfile = profile;
-        saveCurrentProfile();
-        if (Main.notificator != null && !lastCurrProfile.equals(profile)) {
+        saveSettings();
+        if (Main.notificator != null && !Objects.equals(lastCurrProfile, profile)) {
             Main.notificator.restart();
             Main.notificator.setProfile(currentProfile);
         }
     }
 
-    private static void saveCurrentProfile() {
+    public static void changeHideInTrayAtFirstRun(boolean value) {
+        hideInTrayAtFirstRun = value;
+        saveSettings();
+    }
+
+    private static void saveSettings() {
         var path = SETTINGS_DIR + File.separator + SETTINGS_FILE_NAME;
-        Serializer.write(currentProfile, path);
+        var settingsToSave = new SerializableSettings(currentProfile, hideInTrayAtFirstRun);
+        Serializer.write(settingsToSave, path);
     }
 
     private static void saveProfiles() {
@@ -64,15 +72,20 @@ public class Settings {
 
     private static void readSettings() {
         var path = SETTINGS_DIR + File.separator + SETTINGS_FILE_NAME;
-        var deserializedSettings = (Profile) Serializer.read(path);
+        var deserializedSettings = (SerializableSettings) Serializer.read(path);
+        System.out.println(deserializedSettings);
         if (deserializedSettings != null) {
-            for (var profile :
-                    profiles) {
-                if (deserializedSettings.equals(profile)){
-                    currentProfile = profile;
-                    return;
+            if (deserializedSettings.currentProfile != null) {
+                for (var profile :
+                        profiles) {
+                    if (deserializedSettings.currentProfile.equals(profile)) {
+                        currentProfile = profile;
+                        break;
+                    }
                 }
             }
+            hideInTrayAtFirstRun = deserializedSettings.hideInTrayAtFirstRun;
+            System.out.println(hideInTrayAtFirstRun);
         }
     }
 
