@@ -16,6 +16,7 @@ public class Settings {
     private static ArrayList<Profile> profiles = new ArrayList<>();
     public static Profile currentProfile;
     public static boolean hideInTrayAtFirstRun = false;
+    public static boolean playSound = false;
 
     public static void addProfile(Profile profile) {
         profiles.add(profile);
@@ -51,9 +52,15 @@ public class Settings {
         saveSettings();
     }
 
+    public static void changePlaySound(boolean value) {
+        playSound = value;
+        saveSettings();
+    }
+
     private static void saveSettings() {
         var path = SETTINGS_DIR + File.separator + SETTINGS_FILE_NAME;
-        var settingsToSave = new SerializableSettings(currentProfile, hideInTrayAtFirstRun);
+        var settingsToSave =
+                new SerializableSettings(currentProfile, hideInTrayAtFirstRun, playSound);
         Serializer.write(settingsToSave, path);
     }
 
@@ -83,7 +90,9 @@ public class Settings {
                     }
                 }
             }
-            hideInTrayAtFirstRun = deserializedSettings.hideInTrayAtFirstRun; }
+            hideInTrayAtFirstRun = deserializedSettings.hideInTrayAtFirstRun;
+            playSound = deserializedSettings.playSound;
+        }
     }
 
     private static void readProfiles() {

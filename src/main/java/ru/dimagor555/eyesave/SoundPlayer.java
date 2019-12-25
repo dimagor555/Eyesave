@@ -2,6 +2,7 @@ package ru.dimagor555.eyesave;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import ru.dimagor555.eyesave.settings.Settings;
 
 public class SoundPlayer {
 
@@ -15,6 +16,9 @@ public class SoundPlayer {
     }
 
     public void playNotificationSound() {
+        if (!Settings.playSound) {
+            return;
+        }
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.dispose());
         mediaPlayer.setOnReady(() -> mediaPlayer.play());

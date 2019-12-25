@@ -44,6 +44,9 @@ public class MainUIController {
     @FXML
     private CheckBox hideOnTrayCheckBox;
 
+    @FXML
+    private CheckBox playSoundCheckBox;
+
     public MainUIController() {
 
     }
@@ -57,6 +60,7 @@ public class MainUIController {
         profileDeleteChoiceBox = (ChoiceBox<Profile>) root.lookup("#profileDeleteChoiceBox");
         deleteErrLabel = (Label) root.lookup("#deleteErrLabel");
         hideOnTrayCheckBox = (CheckBox) root.lookup("#hideOnTrayCheckBox");
+        playSoundCheckBox = (CheckBox) root.lookup("#playSoundCheckBox");
 
         ButtonGraphicEffects.addBtnClickEffect(hideBtn);
         hideBtn.setOnAction(event -> hideToTray());
@@ -73,8 +77,12 @@ public class MainUIController {
         hideOnTrayCheckBox.setOnAction(event ->
                 Settings.changeHideInTrayAtFirstRun(hideOnTrayCheckBox.isSelected()));
 
+        playSoundCheckBox.setOnAction(event ->
+                Settings.changePlaySound(playSoundCheckBox.isSelected()));
+
         updateProfileChoiceBoxesItems();
         hideOnTrayCheckBox.setSelected(Settings.hideInTrayAtFirstRun);
+        playSoundCheckBox.setSelected(Settings.playSound);
     }
 
     private void createNewProfile() {
