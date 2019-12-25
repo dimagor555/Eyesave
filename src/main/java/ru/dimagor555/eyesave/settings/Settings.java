@@ -73,7 +73,6 @@ public class Settings {
     private static void readSettings() {
         var path = SETTINGS_DIR + File.separator + SETTINGS_FILE_NAME;
         var deserializedSettings = (SerializableSettings) Serializer.read(path);
-        System.out.println(deserializedSettings);
         if (deserializedSettings != null) {
             if (deserializedSettings.currentProfile != null) {
                 for (var profile :
@@ -84,9 +83,7 @@ public class Settings {
                     }
                 }
             }
-            hideInTrayAtFirstRun = deserializedSettings.hideInTrayAtFirstRun;
-            System.out.println(hideInTrayAtFirstRun);
-        }
+            hideInTrayAtFirstRun = deserializedSettings.hideInTrayAtFirstRun; }
     }
 
     private static void readProfiles() {
