@@ -56,7 +56,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <CheckBox fx:id="hideOnTrayCheckBox" layoutX="18.0" layoutY="369.0" mnemonicParsing="false" text="hide in tray on first run" textFill="WHITE">
+      <CheckBox fx:id="hideOnTrayCheckBox" layoutX="18.0" layoutY="369.0" mnemonicParsing="false" text="hide in tray at first run" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
