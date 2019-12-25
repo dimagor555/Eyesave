@@ -8,19 +8,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="474.0" prefWidth="584.0" style="-fx-background-color: #37393d;" stylesheets="@../css/MainUIStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.dimagor555.eyesave.controllers.MainUIController">
+<Pane prefHeight="524.0" prefWidth="584.0" style="-fx-background-color: #37393d;" stylesheets="@../css/MainUIStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.dimagor555.eyesave.controllers.MainUIController">
    <children>
       <Text fill="WHITE" layoutX="15.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eyesave will notificate you to take a break for your eyes" wrappingWidth="553.7294921875">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Button fx:id="hideBtn" layoutX="377.0" layoutY="414.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Hide to tray" textFill="WHITE">
+      <Button fx:id="hideBtn" layoutX="377.0" layoutY="464.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Hide to tray" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Button fx:id="exitBtn" layoutX="248.0" layoutY="414.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Exit" textFill="WHITE">
+      <Button fx:id="exitBtn" layoutX="248.0" layoutY="464.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Exit" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
@@ -57,6 +57,11 @@
          </font>
       </Label>
       <CheckBox fx:id="hideOnTrayCheckBox" layoutX="18.0" layoutY="369.0" mnemonicParsing="false" text="hide in tray on first run" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="playSoundCheckBox" layoutX="18.0" layoutY="419.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="554.0" text="play notification sound" textFill="WHITE" wrapText="true">
          <font>
             <Font size="25.0" />
          </font>

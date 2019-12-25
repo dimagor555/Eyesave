@@ -18,6 +18,7 @@ public class Main extends Application {
     public static Loader loader = new Loader();
     public static Notificator notificator;
     public static MainUIController mainUIController;
+    public static SoundPlayer soundPlayer = new SoundPlayer();
 
     @Override
     public void start(Stage primaryStage) throws Exception {

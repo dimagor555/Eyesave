@@ -59,6 +59,8 @@ public class Notificator {
         notificationWindow.setOnCloseRequest(windowEvent -> closeNotificationWindow());
 
         notificationWindow.show();
+
+        Main.soundPlayer.playNotificationSound();
     }
 
     public void closeNotificationWindow() {

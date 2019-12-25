@@ -54,6 +54,7 @@ public class NotificationController {
         notificationMsg.setText(BREAK_TIME_UP_MSG);
         timeText.setVisible(false);
         closeBtn.setVisible(true);
+        Main.soundPlayer.playNotificationSound();
     }
 
     private void closeWindow() {
