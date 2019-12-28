@@ -1,28 +1,25 @@
 package ru.dimagor555.eyesave;
 
 import javafx.application.Platform;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import ru.dimagor555.eyesave.controllers.NotificationController;
+import ru.dimagor555.eyesave.notificationwindow.NotificationWindowController;
 import ru.dimagor555.eyesave.settings.Profile;
 
 public class Notificator {
 
     public static final int SECONDS_IN_MINUTE = 60;
     public static final int MILLIS_IN_SECOND = 1000;
-    public static final String PATH_TO_NOTIFICATION_PANE = "/fxml/NotificationPane.fxml";
 
     private int frequency;
     private int duration;
-    private boolean isNotificationOpen = false;
     private Thread notificatorThread;
+    public NotificationWindowController notificationWindowController =
+            new NotificationWindowController();
 
     public void start() {
         notificatorThread = new Thread(() -> {
             try {
                 while (true) {
-                    while (!isNotificationOpen) {
+                    while (!notificationWindowController.isNotificationWindowOpen()) {
                         waitForNextNotification();
                         sendNotification();
                     }
@@ -40,35 +37,8 @@ public class Notificator {
     }
 
     private void sendNotification() {
-        Platform.runLater(this::createNotificationWindow);
-        isNotificationOpen = true;
-    }
-
-    public Stage notificationWindow;
-
-    private void createNotificationWindow() {
-        notificationWindow = new Stage();
-        notificationWindow.initOwner(Main.stage);
-        notificationWindow.initModality(Modality.NONE);
-        notificationWindow.setTitle("It's time for a break");
-        var notificationPane = Main.loader.loadPane(PATH_TO_NOTIFICATION_PANE);
-        new NotificationController(notificationPane);
-        notificationWindow.setScene(new Scene(notificationPane));
-        notificationWindow.setResizable(false);
-        notificationWindow.setAlwaysOnTop(true);
-        notificationWindow.setOnCloseRequest(windowEvent -> closeNotificationWindow());
-
-        notificationWindow.show();
-
-        Main.soundPlayer.playNotificationSound();
-    }
-
-    public void closeNotificationWindow() {
-        Platform.runLater(() -> {
-            notificationWindow.close();
-            notificationWindow = null;
-            isNotificationOpen = false;
-        });
+        Platform.runLater(notificationWindowController::createNotificationWindow);
+        notificationWindowController.setNotificationWindowOpen(true);
     }
 
     public void restart() {
@@ -78,6 +48,10 @@ public class Notificator {
 
     public void stop() {
         notificatorThread.interrupt();
+    }
+
+    public void closeNotificationWindow() {
+        notificationWindowController.closeNotificationWindow();
     }
 
     public void setProfile(Profile profile) {

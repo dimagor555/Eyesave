@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ru.dimagor555.eyesave.controllers.MainUIController;
+import ru.dimagor555.eyesave.mainwindow.MainUIController;
 import ru.dimagor555.eyesave.settings.Settings;
 
 public class Main extends Application {

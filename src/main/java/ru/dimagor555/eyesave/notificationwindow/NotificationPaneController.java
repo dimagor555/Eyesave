@@ -1,13 +1,14 @@
-package ru.dimagor555.eyesave.controllers;
+package ru.dimagor555.eyesave.notificationwindow;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import ru.dimagor555.eyesave.BreakTimer;
 import ru.dimagor555.eyesave.Main;
+import ru.dimagor555.eyesave.controllers.ButtonGraphicEffects;
 
-public class NotificationController {
+public class NotificationPaneController {
 
     @FXML
     private Text notificationMsg;
@@ -21,11 +22,11 @@ public class NotificationController {
     @FXML
     private Button closeBtn;
 
-    public NotificationController() {
+    public NotificationPaneController() {
 
     }
 
-    public NotificationController(Pane root) {
+    public NotificationPaneController(Pane root) {
         notificationMsg = (Text) root.lookup("#notificationMsg");
         timeText = (Text) root.lookup("#timeText");
         startBtn = (Button) root.lookup("#startBtn");
@@ -42,7 +43,7 @@ public class NotificationController {
 
     private void startBreak() {
         var notificator = Main.notificator;
-        Runnable onFinish = this::onTimerFinish;
+        Runnable onFinish = () -> Platform.runLater(this::onTimerFinish);
         new BreakTimer(timeText, notificator.getDuration(), onFinish).start();
         startBtn.setVisible(false);
     }
@@ -62,7 +63,7 @@ public class NotificationController {
     }
 
     private void setInitialTimerDisplayValue() {
-        new BreakTimer(timeText, Main.notificator.getDuration(), null).setTimeOnDisplay();
+        new TimerDisplayController(timeText).setTime(Main.notificator.getDuration());
     }
 
 }

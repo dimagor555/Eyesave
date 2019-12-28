@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="329.0" prefWidth="609.0" style="-fx-background-color: #37393d;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.dimagor555.eyesave.controllers.ProfileCreationController">
+<Pane prefHeight="329.0" prefWidth="609.0" style="-fx-background-color: #37393d;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.dimagor555.eyesave.mainwindow.ProfileCreationController">
    <children>
       <Label layoutX="17.0" layoutY="109.0" prefHeight="42.0" prefWidth="300.0" text="Show notification every" textFill="WHITE">
          <font>

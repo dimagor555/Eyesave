@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="524.0" prefWidth="584.0" style="-fx-background-color: #37393d;" stylesheets="@../css/MainUIStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.dimagor555.eyesave.controllers.MainUIController">
+<Pane prefHeight="524.0" prefWidth="584.0" style="-fx-background-color: #37393d;" stylesheets="@../css/MainUIStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.dimagor555.eyesave.mainwindow.MainUIController">
    <children>
       <Text fill="WHITE" layoutX="15.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eyesave will notificate you to take a break for your eyes" wrappingWidth="553.7294921875">
          <font>

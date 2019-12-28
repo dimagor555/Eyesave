@@ -7,7 +7,8 @@ module Eyesave {
     requires javafx.swing;
 
     opens ru.dimagor555.eyesave to javafx.fxml;
-    opens ru.dimagor555.eyesave.controllers to javafx.fxml;
+    opens ru.dimagor555.eyesave.mainwindow to javafx.fxml;
+    opens ru.dimagor555.eyesave.notificationwindow to javafx.fxml;
     exports ru.dimagor555.eyesave;
     exports ru.dimagor555.eyesave.controllers;
 }
