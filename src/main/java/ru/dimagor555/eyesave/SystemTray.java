@@ -58,9 +58,10 @@ public class SystemTray {
     }
 
     private static void dontCloseNotificationWindowIfOpen() {
-        var notificationWindow = Main.notificator.notificationWindow;
+        var notificationWindow = Main.notificator.notificationWindowController.notificationWindow;
         if (notificationWindow != null) {
-            Platform.runLater(() -> Main.notificator.notificationWindow.show());
+            Platform.runLater(() ->
+                    Main.notificator.notificationWindowController.notificationWindow.show());
         }
     }
 

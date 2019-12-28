@@ -1,4 +1,4 @@
-package ru.dimagor555.eyesave.controllers;
+package ru.dimagor555.eyesave.mainwindow;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ru.dimagor555.eyesave.Notificator;
+import ru.dimagor555.eyesave.controllers.ButtonGraphicEffects;
 import ru.dimagor555.eyesave.settings.Profile;
 import ru.dimagor555.eyesave.settings.Settings;
 
