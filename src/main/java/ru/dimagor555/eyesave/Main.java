@@ -38,7 +38,9 @@ public class Main extends Application {
 
         notificator = new Notificator();
         notificator.setProfile(Settings.currentProfile);
-        notificator.start();
+        if (Settings.currentProfile != null) {
+            notificator.start();
+        }
 
         if (!Settings.hideInTrayAtFirstRun) {
             showStage();

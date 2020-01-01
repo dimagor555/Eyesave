@@ -13,6 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ru.dimagor555.eyesave.Main;
 import ru.dimagor555.eyesave.SystemTray;
+import ru.dimagor555.eyesave.TimeFormatter;
 import ru.dimagor555.eyesave.controllers.ButtonGraphicEffects;
 import ru.dimagor555.eyesave.settings.Profile;
 import ru.dimagor555.eyesave.settings.Settings;
@@ -48,42 +49,101 @@ public class MainUIController {
     @FXML
     private CheckBox playSoundCheckBox;
 
+    @FXML
+    private Label nextNotificationTimeLbl;
+
+    @FXML
+    private Button nextNotificationPauseBtn;
+
+    @FXML
+    private Button nextNotificationContinueBtn;
+
     public MainUIController() {
 
     }
 
     public MainUIController(Pane root) {
+        lookupAllNodes(root);
+        setBtnsGraphicEffects();
+        setAllOnActions();
+        updateNodesData();
+    }
+
+    private void lookupAllNodes(Pane root) {
         hideBtn = (Button) root.lookup("#hideBtn");
         exitBtn = (Button) root.lookup("#exitBtn");
         createNewProfileBtn = (Button) root.lookup("#createNewProfileBtn");
         deleteBtn = (Button) root.lookup("#deleteBtn");
+        nextNotificationPauseBtn = (Button) root.lookup("#nextNotificationPauseBtn");
+        nextNotificationContinueBtn = (Button) root.lookup("#nextNotificationContinueBtn");
+
         profileSelectChoiceBox = (ChoiceBox<Profile>) root.lookup("#profileSelectChoiceBox");
         profileDeleteChoiceBox = (ChoiceBox<Profile>) root.lookup("#profileDeleteChoiceBox");
-        deleteErrLabel = (Label) root.lookup("#deleteErrLabel");
+
         hideOnTrayCheckBox = (CheckBox) root.lookup("#hideOnTrayCheckBox");
         playSoundCheckBox = (CheckBox) root.lookup("#playSoundCheckBox");
 
+        deleteErrLabel = (Label) root.lookup("#deleteErrLabel");
+        nextNotificationTimeLbl = (Label) root.lookup("#nextNotificationTimeLbl");
+    }
+
+    private void setBtnsGraphicEffects() {
         ButtonGraphicEffects.addBtnClickEffect(hideBtn);
-        hideBtn.setOnAction(event -> hideToTray());
         ButtonGraphicEffects.addBtnClickEffect(exitBtn);
-        exitBtn.setOnAction(event -> System.exit(0));
         ButtonGraphicEffects.addBtnClickEffect(createNewProfileBtn);
-        createNewProfileBtn.setOnAction(event -> createNewProfile());
         ButtonGraphicEffects.addBtnClickEffect(deleteBtn);
+        ButtonGraphicEffects.addBtnClickEffect(nextNotificationPauseBtn);
+        ButtonGraphicEffects.addBtnClickEffect(nextNotificationContinueBtn);
+    }
+
+    private void setAllOnActions() {
+        hideBtn.setOnAction(event -> hideToTray());
+        exitBtn.setOnAction(event -> System.exit(0));
+        createNewProfileBtn.setOnAction(event -> createNewProfile());
         deleteBtn.setOnAction(event -> deleteProfile());
+        nextNotificationPauseBtn.setOnAction(event -> pauseNextNotification());
+        nextNotificationContinueBtn.setOnAction(event -> continueNextNotification());
 
         profileSelectChoiceBox.setOnAction(event ->
                 Settings.changeCurrentProfile(profileSelectChoiceBox.getValue()));
 
         hideOnTrayCheckBox.setOnAction(event ->
                 Settings.changeHideInTrayAtFirstRun(hideOnTrayCheckBox.isSelected()));
-
         playSoundCheckBox.setOnAction(event ->
                 Settings.changePlaySound(playSoundCheckBox.isSelected()));
+    }
 
+    private void updateNodesData() {
         updateProfileChoiceBoxesItems();
         hideOnTrayCheckBox.setSelected(Settings.hideInTrayAtFirstRun);
         playSoundCheckBox.setSelected(Settings.playSound);
+    }
+
+    private void pauseNextNotification() {
+        switchNextNotificationPauseAndContinueBtns();
+        Main.notificator.pauseNotificatorTimer();
+    }
+
+    private void continueNextNotification() {
+        switchNextNotificationPauseAndContinueBtns();
+        Main.notificator.continueNotificatorTimer();
+    }
+
+    private void switchNextNotificationPauseAndContinueBtns() {
+        boolean pauseIsVisible = nextNotificationPauseBtn.isVisible();
+        if (pauseIsVisible) {
+            nextNotificationPauseBtn.setVisible(false);
+            nextNotificationContinueBtn.setVisible(true);
+        } else {
+            nextNotificationPauseBtn.setVisible(true);
+            nextNotificationContinueBtn.setVisible(false);
+        }
+    }
+
+    public void setNextNotificationTime(long millis) {
+        var timeFormatter = new TimeFormatter();
+        String timeStr = timeFormatter.formatTime((int) millis);
+        nextNotificationTimeLbl.setText(timeStr);
     }
 
     private void createNewProfile() {
