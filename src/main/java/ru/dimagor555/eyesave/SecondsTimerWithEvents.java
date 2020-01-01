@@ -4,8 +4,8 @@ public class SecondsTimerWithEvents {
 
     public static final long ONE_SECOND = 1000;
 
-    private long millisLeft;
-    private Thread timerThread;
+    protected long millisLeft;
+    protected Thread timerThread;
     private Runnable onFinish;
     private Runnable onEverySecond;
 
@@ -20,7 +20,7 @@ public class SecondsTimerWithEvents {
         timerThread.start();
     }
 
-    private void run() {
+    protected void run() {
         try {
             while (millisLeft > 0) {
                 runEverySecondEventHandler();
@@ -33,13 +33,13 @@ public class SecondsTimerWithEvents {
         runFinishEventHandler();
     }
 
-    private void runEverySecondEventHandler() {
+    protected void runEverySecondEventHandler() {
         if (onEverySecond != null) {
             onEverySecond.run();
         }
     }
 
-    private void runFinishEventHandler() {
+    protected void runFinishEventHandler() {
         if (onFinish != null) {
             onFinish.run();
         }

@@ -1,6 +1,7 @@
 package ru.dimagor555.eyesave.notificationwindow;
 
 import javafx.scene.text.Text;
+import ru.dimagor555.eyesave.TimeFormatter;
 
 public class TimerDisplayController {
 
@@ -10,7 +11,7 @@ public class TimerDisplayController {
         this.display = display;
     }
 
-    private TimerDisplayTimeFormatter timeFormatter = new TimerDisplayTimeFormatter();
+    private TimeFormatter timeFormatter = new TimeFormatter();
 
     public void setTime(long millis) {
         var timeStr = timeFormatter.formatTime((int) millis);

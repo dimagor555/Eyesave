@@ -1,6 +1,6 @@
-package ru.dimagor555.eyesave.notificationwindow;
+package ru.dimagor555.eyesave;
 
-public class TimerDisplayTimeFormatter {
+public class TimeFormatter {
 
     public static final int MILLIS_IN_SECOND = 1000;
     public static final int MILLIS_IN_MINUTE = 60000;

@@ -1,6 +1,7 @@
 package ru.dimagor555.eyesave;
 
 import javafx.application.Platform;
+import ru.dimagor555.eyesave.mainwindow.SecondsTimerWithEventsAndPause;
 import ru.dimagor555.eyesave.notificationwindow.NotificationWindowController;
 import ru.dimagor555.eyesave.settings.Profile;
 
@@ -12,6 +13,7 @@ public class Notificator {
     private int frequency;
     private int duration;
     private Thread notificatorThread;
+    private SecondsTimerWithEventsAndPause notificatorTimer;
     public NotificationWindowController notificationWindowController =
             new NotificationWindowController();
 
@@ -19,9 +21,8 @@ public class Notificator {
         notificatorThread = new Thread(() -> {
             try {
                 while (true) {
-                    while (!notificationWindowController.isNotificationWindowOpen()) {
-                        waitForNextNotification();
-                        sendNotification();
+                    if (!notificationWindowController.isNotificationWindowOpen()) {
+                        startTimerToNextNotification();
                     }
                     Thread.sleep(2000);
                 }
@@ -32,13 +33,29 @@ public class Notificator {
         notificatorThread.start();
     }
 
-    private void waitForNextNotification() throws InterruptedException {
-        Thread.sleep(frequency);
+    private void startTimerToNextNotification() throws InterruptedException {
+        Runnable onFinish = () -> Platform.runLater(this::sendNotification);
+        Runnable onEverySecond = () -> Platform.runLater(() -> Main.mainUIController
+                .setNextNotificationTime(notificatorTimer.getMillisLeft()));
+        notificatorTimer = new SecondsTimerWithEventsAndPause(frequency, onFinish, onEverySecond);
+        notificatorTimer.start();
+
+        while (!notificatorTimer.isFinished()) {
+            Thread.sleep(1000);
+        }
     }
 
     private void sendNotification() {
         Platform.runLater(notificationWindowController::createNotificationWindow);
         notificationWindowController.setNotificationWindowOpen(true);
+    }
+
+    public void pauseNotificatorTimer() {
+        notificatorTimer.pause();
+    }
+
+    public void continueNotificatorTimer() {
+        notificatorTimer.continue_();
     }
 
     public void restart() {
@@ -47,7 +64,9 @@ public class Notificator {
     }
 
     public void stop() {
-        notificatorThread.interrupt();
+        if (notificatorThread != null) {
+            notificatorThread.interrupt();
+        }
     }
 
     public void closeNotificationWindow() {
@@ -56,8 +75,6 @@ public class Notificator {
 
     public void setProfile(Profile profile) {
         if (profile == null) {
-            setFrequency(999);
-            setDuration(999);
             return;
         }
         setFrequency(profile.getFrequency());
