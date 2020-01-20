@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'org.beryx.jlink' version '2.16.4'
+}
+
+startScripts {
+
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+javafx {
+    version = "13.0.1"
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.swing']
+}
+
+mainClassName = "$moduleName/ru.dimagor555.eyesave.Main"
+ 
+def java_home = '/home/dimagor555/Java/jdk-13.0.1'
+
+def win_java_home = '/home/dimagor555/Java/jdk-13.0.1W'
+def win_fx_jmods = '/home/dimagor555/Java/javafx-jmods-13.0.1W'
+
+jlink {
+    javaHome = java_home
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'Eyesave'
+    }
+    imageDir = file("$buildDir/Eyesave")
+    imageZip = file("$buildDir/Eyesave-Zip")
+    targetPlatform("Linux") {
+        jdkHome = java_home
+    }
+    targetPlatform("Windows") {
+        jdkHome = win_java_home
+        addExtraModulePath(win_fx_jmods)
+    }
+}
