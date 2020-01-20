@@ -67,6 +67,7 @@ public class Notificator {
         if (notificatorThread != null) {
             notificatorThread.interrupt();
         }
+        notificatorTimer.stop();
     }
 
     public void closeNotificationWindow() {

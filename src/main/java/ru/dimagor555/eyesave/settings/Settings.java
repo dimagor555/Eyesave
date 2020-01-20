@@ -42,8 +42,8 @@ public class Settings {
         currentProfile = profile;
         saveSettings();
         if (Main.notificator != null && !Objects.equals(lastCurrProfile, profile)) {
-            Main.notificator.restart();
             Main.notificator.setProfile(currentProfile);
+            Main.notificator.restart();
         }
     }
 

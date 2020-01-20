@@ -45,8 +45,10 @@ public class SecondsTimerWithEvents {
         }
     }
 
-    private void stop() {
-        timerThread.interrupt();
+    public void stop() {
+        if (timerThread != null) {
+            timerThread.interrupt();
+        }
     }
 
     public long getMillisLeft() {
