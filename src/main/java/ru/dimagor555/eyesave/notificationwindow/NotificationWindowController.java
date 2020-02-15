@@ -13,6 +13,7 @@ public class NotificationWindowController {
     private boolean notificationWindowOpen = false;
 
     public Stage notificationWindow;
+    private NotificationPaneController notificationPaneController;
 
     public void createNotificationWindow() {
         notificationWindow = new Stage();
@@ -20,7 +21,7 @@ public class NotificationWindowController {
         notificationWindow.initModality(Modality.NONE);
         notificationWindow.setTitle("It's time for a break");
         var notificationPane = Main.loader.loadPane(PATH_TO_NOTIFICATION_PANE);
-        new NotificationPaneController(notificationPane);
+        notificationPaneController = new NotificationPaneController(notificationPane);
         notificationWindow.setScene(new Scene(notificationPane));
         notificationWindow.setResizable(false);
         notificationWindow.setAlwaysOnTop(true);
@@ -36,6 +37,7 @@ public class NotificationWindowController {
             notificationWindow.close();
             notificationWindow = null;
             notificationWindowOpen = false;
+            notificationPaneController.breakTimer.stop();
         });
     }
 

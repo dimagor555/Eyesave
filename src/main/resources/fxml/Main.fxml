@@ -56,7 +56,7 @@
             <Font size="25.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="playSoundCheckBox" layoutX="598.0" layoutY="129.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="554.0" text="play notification sound" textFill="WHITE" wrapText="true">
+      <CheckBox fx:id="playSoundCheckBox" layoutX="598.0" layoutY="129.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="345.0" text="play notification sound" textFill="WHITE" wrapText="true">
          <font>
             <Font size="25.0" />
          </font>
@@ -66,17 +66,17 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="648.0" layoutY="190.0" text="Next notification in" textFill="WHITE">
+      <Label layoutX="648.0" layoutY="240.0" text="Next notification in" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="nextNotificationTimeLbl" alignment="CENTER" layoutX="648.0" layoutY="220.0" prefHeight="30.0" prefWidth="238.0" text="00:00" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="nextNotificationTimeLbl" alignment="CENTER" layoutX="648.0" layoutY="270.0" prefHeight="30.0" prefWidth="238.0" text="00:00" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="nextNotificationPauseBtn" layoutX="719.0" layoutY="263.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Pause" textFill="WHITE">
+      <Button fx:id="nextNotificationPauseBtn" layoutX="719.0" layoutY="313.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Pause" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
@@ -86,5 +86,10 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <CheckBox fx:id="addToStartupCheckBox" layoutX="598.0" layoutY="179.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="330.0" text="add to startup" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </CheckBox>
    </children>
 </Pane>

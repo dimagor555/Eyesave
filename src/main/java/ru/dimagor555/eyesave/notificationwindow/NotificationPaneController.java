@@ -41,10 +41,13 @@ public class NotificationPaneController {
         setInitialTimerDisplayValue();
     }
 
+    public BreakTimer breakTimer;
+
     private void startBreak() {
         var notificator = Main.notificator;
         Runnable onFinish = () -> Platform.runLater(this::onTimerFinish);
-        new BreakTimer(timeText, notificator.getDuration(), onFinish).start();
+        breakTimer = new BreakTimer(timeText, notificator.getDuration(), onFinish);
+        breakTimer.start();
         startBtn.setVisible(false);
     }
 
