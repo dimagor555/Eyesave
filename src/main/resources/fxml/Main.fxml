@@ -81,14 +81,14 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="nextNotificationContinueBtn" layoutX="704.0" layoutY="263.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Continue" textFill="WHITE" visible="false">
+      <Button fx:id="nextNotificationContinueBtn" layoutX="704.0" layoutY="313.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Continue" textFill="WHITE" visible="false">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <CheckBox fx:id="addToStartupCheckBox" layoutX="598.0" layoutY="179.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="330.0" text="add to startup" textFill="WHITE" wrapText="true">
+      <CheckBox fx:id="addToStartupCheckBox" layoutX="598.0" layoutY="179.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="330.0" text="Launch at system startup" textFill="WHITE" wrapText="true">
          <font>
-            <Font size="25.0" />
+            <Font size="22.0" />
          </font>
       </CheckBox>
    </children>

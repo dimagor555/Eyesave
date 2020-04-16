@@ -5,6 +5,7 @@ module Eyesave {
     requires javafx.media;
     requires java.desktop;
     requires javafx.swing;
+    requires commons.lang3;
 
     opens ru.dimagor555.eyesave to javafx.fxml;
     opens ru.dimagor555.eyesave.mainwindow to javafx.fxml;
