@@ -29,8 +29,12 @@ public class SecondsTimerWithEvents {
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
+            runFinishEventHandler();
+            return;
         }
+
         runFinishEventHandler();
+        Main.soundPlayer.playNotificationSound();
     }
 
     protected void runEverySecondEventHandler() {

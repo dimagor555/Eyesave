@@ -16,7 +16,7 @@ public class SecondsTimerWithEventsAndPause extends SecondsTimerWithEvents {
     @Override
     protected void run() {
         try {
-            while (millisLeft > 0) {
+            while (millisLeft > 0 && !Thread.interrupted()) {
                 runEverySecondEventHandler();
                 millisLeft -= ONE_SECOND;
                 Thread.sleep(ONE_SECOND);
@@ -29,9 +29,12 @@ public class SecondsTimerWithEventsAndPause extends SecondsTimerWithEvents {
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
+            finished = true;
+            return;
         }
-        runFinishEventHandler();
+
         finished = true;
+        runFinishEventHandler();
     }
 
     public void pause() {

@@ -51,14 +51,13 @@ public class NotificationPaneController {
         startBtn.setVisible(false);
     }
 
-    public static final String BREAK_TIME_UP_MSG =
+    public static final String BREAK_TIME_ENDED_MSG =
             "Break time is up!\nYou can continue to use your computer" ;
 
     private void onTimerFinish() {
-        notificationMsg.setText(BREAK_TIME_UP_MSG);
+        notificationMsg.setText(BREAK_TIME_ENDED_MSG);
         timeText.setVisible(false);
         closeBtn.setVisible(true);
-        Main.soundPlayer.playNotificationSound();
     }
 
     private void closeWindow() {
