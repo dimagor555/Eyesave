@@ -83,7 +83,7 @@ public class Notificator {
     }
 
     public void setFrequency(int frequency) {
-        this.frequency = frequency /** SECONDS_IN_MINUTE*/ * MILLIS_IN_SECOND;
+        this.frequency = frequency * SECONDS_IN_MINUTE * MILLIS_IN_SECOND;
     }
 
     public void setDuration(int duration) {
