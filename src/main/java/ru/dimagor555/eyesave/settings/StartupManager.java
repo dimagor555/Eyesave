@@ -7,7 +7,7 @@ import java.nio.file.*;
 
 public class StartupManager {
 
-    public static void setStartup(boolean value) {
+    public void setStartup(boolean value) {
         final Path currDir = Paths.get("").toAbsolutePath();
 
         if (SystemUtils.IS_OS_WINDOWS) {
@@ -17,7 +17,7 @@ public class StartupManager {
         }
     }
 
-    private static void setStartupWin(boolean value, Path currDir) {
+    private void setStartupWin(boolean value, Path currDir) {
         final String regKeyName = "\"Eyesave\"";
         String pathToExeStarter = currDir
                 .toString().replaceAll("/", "\\\\") + "\\Eyesave.exe";
@@ -38,8 +38,8 @@ public class StartupManager {
         }
     }
 
-    private static void setStartupLinux(boolean value, Path currDir) {
-        final String startupCommand = currDir.toString() + "/Eyesave";
+    private void setStartupLinux(boolean value, Path currDir) {
+        final String startupCommand = currDir.toString() + "/Eyesave.sh";
         File startupScript = new File("Eyesave.desktop");
         String pathToStartupDir = SystemUtils.getUserHome() + "/.config/autostart";
 
