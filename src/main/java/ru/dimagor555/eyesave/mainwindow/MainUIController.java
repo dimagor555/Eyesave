@@ -56,10 +56,7 @@ public class MainUIController {
     private Label nextNotificationTimeLbl;
 
     @FXML
-    private Button nextNotificationPauseBtn;
-
-    @FXML
-    private Button nextNotificationContinueBtn;
+    private Button takeBreakeBtn;
 
     public MainUIController() {
 
@@ -77,8 +74,7 @@ public class MainUIController {
         exitBtn = (Button) root.lookup("#exitBtn");
         createNewProfileBtn = (Button) root.lookup("#createNewProfileBtn");
         deleteBtn = (Button) root.lookup("#deleteBtn");
-        nextNotificationPauseBtn = (Button) root.lookup("#nextNotificationPauseBtn");
-        nextNotificationContinueBtn = (Button) root.lookup("#nextNotificationContinueBtn");
+        takeBreakeBtn = (Button) root.lookup("#takeBreakeBtn");
 
         profileSelectChoiceBox = (ChoiceBox<Profile>) root.lookup("#profileSelectChoiceBox");
         profileDeleteChoiceBox = (ChoiceBox<Profile>) root.lookup("#profileDeleteChoiceBox");
@@ -96,8 +92,7 @@ public class MainUIController {
         ButtonGraphicEffects.addBtnClickEffect(exitBtn);
         ButtonGraphicEffects.addBtnClickEffect(createNewProfileBtn);
         ButtonGraphicEffects.addBtnClickEffect(deleteBtn);
-        ButtonGraphicEffects.addBtnClickEffect(nextNotificationPauseBtn);
-        ButtonGraphicEffects.addBtnClickEffect(nextNotificationContinueBtn);
+        ButtonGraphicEffects.addBtnClickEffect(takeBreakeBtn);
     }
 
     private void setAllOnActions() {
@@ -105,8 +100,7 @@ public class MainUIController {
         exitBtn.setOnAction(event -> System.exit(0));
         createNewProfileBtn.setOnAction(event -> createNewProfile());
         deleteBtn.setOnAction(event -> deleteProfile());
-        nextNotificationPauseBtn.setOnAction(event -> pauseNextNotification());
-        nextNotificationContinueBtn.setOnAction(event -> continueNextNotification());
+        takeBreakeBtn.setOnAction(event -> sendNotification());
 
         profileSelectChoiceBox.setOnAction(event ->
                 Settings.changeCurrentProfile(profileSelectChoiceBox.getValue()));
@@ -126,25 +120,9 @@ public class MainUIController {
         addToStartupCheckBox.setSelected(Settings.addToStartup);
     }
 
-    private void pauseNextNotification() {
-        switchNextNotificationPauseAndContinueBtns();
-        Main.notificator.pauseNotificatorTimer();
-    }
-
-    private void continueNextNotification() {
-        switchNextNotificationPauseAndContinueBtns();
-        Main.notificator.continueNotificatorTimer();
-    }
-
-    private void switchNextNotificationPauseAndContinueBtns() {
-        boolean pauseIsVisible = nextNotificationPauseBtn.isVisible();
-        if (pauseIsVisible) {
-            nextNotificationPauseBtn.setVisible(false);
-            nextNotificationContinueBtn.setVisible(true);
-        } else {
-            nextNotificationPauseBtn.setVisible(true);
-            nextNotificationContinueBtn.setVisible(false);
-        }
+    private void sendNotification() {
+        Main.notificator.stopNotificationTimer();
+        Main.notificator.sendNotification();
     }
 
     public void setNextNotificationTime(long millis) {

@@ -76,12 +76,7 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="nextNotificationPauseBtn" layoutX="719.0" layoutY="313.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Pause" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="nextNotificationContinueBtn" layoutX="704.0" layoutY="313.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Continue" textFill="WHITE" visible="false">
+      <Button fx:id="takeBreakeBtn" layoutX="689.0" layoutY="313.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Take a break" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

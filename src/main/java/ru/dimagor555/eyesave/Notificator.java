@@ -45,17 +45,9 @@ public class Notificator {
         }
     }
 
-    private void sendNotification() {
+    public void sendNotification() {
         Platform.runLater(notificationWindowController::createNotificationWindow);
         notificationWindowController.setNotificationWindowOpen(true);
-    }
-
-    public void pauseNotificatorTimer() {
-        notificatorTimer.pause();
-    }
-
-    public void continueNotificatorTimer() {
-        notificatorTimer.continue_();
     }
 
     public void restart() {
@@ -67,6 +59,10 @@ public class Notificator {
         if (notificatorThread != null) {
             notificatorThread.interrupt();
         }
+        stopNotificationTimer();
+    }
+
+    public void stopNotificationTimer() {
         notificatorTimer.stop();
     }
 
