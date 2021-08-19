@@ -10,12 +10,14 @@ public class SerializableSettings implements Serializable {
     public boolean hideInTrayAtFirstRun;
     public boolean playSound;
     public boolean addToStartup;
+    public boolean repeatNotification;
 
     public SerializableSettings(Profile currentProfile, boolean hideInTrayAtFirstRun,
-                                boolean playSound, boolean addToStartup) {
+                                boolean playSound, boolean addToStartup, boolean repeatNotification) {
         this.currentProfile = currentProfile;
         this.hideInTrayAtFirstRun = hideInTrayAtFirstRun;
         this.playSound = playSound;
         this.addToStartup = addToStartup;
+        this.repeatNotification = repeatNotification;
     }
 }

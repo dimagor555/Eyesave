@@ -1,9 +1,11 @@
 package ru.dimagor555.eyesave;
 
 import javafx.application.Platform;
+import ru.dimagor555.eyesave.mainwindow.NotificationRepeater;
 import ru.dimagor555.eyesave.mainwindow.SecondsTimerWithEventsAndPause;
 import ru.dimagor555.eyesave.notificationwindow.NotificationWindowController;
 import ru.dimagor555.eyesave.settings.Profile;
+import ru.dimagor555.eyesave.settings.Settings;
 
 public class Notificator {
 
@@ -14,6 +16,7 @@ public class Notificator {
     private int duration;
     private Thread notificatorThread;
     private SecondsTimerWithEventsAndPause notificatorTimer;
+    private NotificationRepeater notificationRepeater;
     public NotificationWindowController notificationWindowController =
             new NotificationWindowController();
 
@@ -46,8 +49,41 @@ public class Notificator {
     }
 
     public void sendNotification() {
-        Platform.runLater(notificationWindowController::createNotificationWindow);
+        Platform.runLater(() -> {
+            notificationWindowController.showNotificationWindow(this::onCloseNotification);
+            if (Settings.repeatNotification)
+                startRepeatingNotification();
+        });
         notificationWindowController.setNotificationWindowOpen(true);
+    }
+
+    private void onCloseNotification() {
+        stopRepeatingNotification();
+    }
+
+    private void startRepeatingNotification() {
+        stopRepeatingNotification();
+
+        notificationRepeater = createNotificationRepeater();
+        notificationRepeater.startRepeating();
+    }
+
+    private NotificationRepeater createNotificationRepeater() {
+        var notificationRepeater = new NotificationRepeater(this::sendNotification);
+        setCallbackToStopRepeatingOnBreakStarted(notificationRepeater);
+        return notificationRepeater;
+    }
+
+    private void setCallbackToStopRepeatingOnBreakStarted(
+            NotificationRepeater notificationRepeater
+    ) {
+        notificationWindowController.getNotificationPaneController()
+                .setOnBreakStarted(notificationRepeater::stopRepeating);
+    }
+
+    private void stopRepeatingNotification() {
+        if (notificationRepeater != null)
+            notificationRepeater.stopRepeating();
     }
 
     public void restart() {

@@ -22,6 +22,8 @@ public class NotificationPaneController {
     @FXML
     private Button closeBtn;
 
+    private Runnable onBreakStarted;
+
     public NotificationPaneController() {
 
     }
@@ -47,12 +49,16 @@ public class NotificationPaneController {
         var notificator = Main.notificator;
         Runnable onFinish = () -> Platform.runLater(this::onTimerFinish);
         breakTimer = new BreakTimer(timeText, notificator.getDuration(), onFinish);
+
+        if (onBreakStarted != null)
+            breakTimer.setOnStarted(onBreakStarted);
+
         breakTimer.start();
         startBtn.setVisible(false);
     }
 
     public static final String BREAK_TIME_ENDED_MSG =
-            "Break time is up!\nYou can continue to use your computer" ;
+            "Break time is up!\nYou can continue to use your computer";
 
     private void onTimerFinish() {
         notificationMsg.setText(BREAK_TIME_ENDED_MSG);
@@ -68,4 +74,7 @@ public class NotificationPaneController {
         new TimerDisplayController(timeText).setTime(Main.notificator.getDuration());
     }
 
+    public void setOnBreakStarted(Runnable onBreakStarted) {
+        this.onBreakStarted = onBreakStarted;
+    }
 }

@@ -18,16 +18,16 @@ dependencies {
 }
 
 javafx {
-    version = "13.0.1"
+    version = "14"
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.swing']
 }
 
 mainClassName = "$moduleName/ru.dimagor555.eyesave.Main"
  
-def java_home = '/home/dimagor555/Java/jdk-13.0.1'
+def java_home = '/home/dimagor555/Java/jdk-14'
 
-def win_java_home = '/home/dimagor555/Java/jdk-13.0.1W'
-def win_fx_jmods = '/home/dimagor555/Java/javafx-jmods-13.0.1W'
+def win_java_home = '/home/dimagor555/Java/jdk-14W'
+def win_fx_jmods = '/home/dimagor555/Java/javafx-jmods-14W'
 
 jlink {
     javaHome = java_home

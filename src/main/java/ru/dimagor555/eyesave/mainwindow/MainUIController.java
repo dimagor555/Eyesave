@@ -53,6 +53,9 @@ public class MainUIController {
     private CheckBox addToStartupCheckBox;
 
     @FXML
+    private CheckBox checkBoxRepeatNotification;
+
+    @FXML
     private Label nextNotificationTimeLbl;
 
     @FXML
@@ -82,6 +85,7 @@ public class MainUIController {
         hideOnTrayCheckBox = (CheckBox) root.lookup("#hideOnTrayCheckBox");
         playSoundCheckBox = (CheckBox) root.lookup("#playSoundCheckBox");
         addToStartupCheckBox = (CheckBox) root.lookup("#addToStartupCheckBox");
+        checkBoxRepeatNotification = (CheckBox) root.lookup("#checkBoxRepeatNotification");
 
         deleteErrLabel = (Label) root.lookup("#deleteErrLabel");
         nextNotificationTimeLbl = (Label) root.lookup("#nextNotificationTimeLbl");
@@ -111,6 +115,8 @@ public class MainUIController {
                 Settings.changePlaySound(playSoundCheckBox.isSelected()));
         addToStartupCheckBox.setOnAction(event ->
                 Settings.changeAddToStartup(addToStartupCheckBox.isSelected()));
+        checkBoxRepeatNotification.setOnAction(event ->
+                Settings.changeRepeatNotification(checkBoxRepeatNotification.isSelected()));
     }
 
     private void updateNodesData() {

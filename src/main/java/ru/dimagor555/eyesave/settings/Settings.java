@@ -18,6 +18,7 @@ public class Settings {
     public static boolean hideInTrayAtFirstRun = false;
     public static boolean playSound = false;
     public static boolean addToStartup = false;
+    public static boolean repeatNotification = true;
 
     public static void addProfile(Profile profile) {
         profiles.add(profile);
@@ -65,11 +66,16 @@ public class Settings {
         startupManager.setStartup(value);
     }
 
+    public static void changeRepeatNotification(boolean value) {
+        repeatNotification = value;
+        saveSettings();
+    }
+
     private static void saveSettings() {
         var path = SETTINGS_DIR + File.separator + SETTINGS_FILE_NAME;
         var settingsToSave =
                 new SerializableSettings(currentProfile, hideInTrayAtFirstRun, playSound,
-                        addToStartup);
+                        addToStartup, repeatNotification);
         Serializer.write(settingsToSave, path);
     }
 
@@ -102,6 +108,7 @@ public class Settings {
             hideInTrayAtFirstRun = deserializedSettings.hideInTrayAtFirstRun;
             playSound = deserializedSettings.playSound;
             addToStartup = deserializedSettings.addToStartup;
+            repeatNotification = deserializedSettings.repeatNotification;
         }
     }
 

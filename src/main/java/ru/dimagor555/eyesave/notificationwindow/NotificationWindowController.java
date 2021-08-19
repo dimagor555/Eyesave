@@ -15,7 +15,20 @@ public class NotificationWindowController {
     public Stage notificationWindow;
     private NotificationPaneController notificationPaneController;
 
-    public void createNotificationWindow() {
+    private Runnable onCloseNotification;
+
+    public void showNotificationWindow(Runnable onCloseNotification) {
+        this.onCloseNotification = onCloseNotification;
+
+        if (notificationWindow != null)
+            notificationWindow.close();
+
+        createNotificationWindow();
+        notificationWindow.show();
+        Main.soundPlayer.playNotificationSound();
+    }
+
+    private void createNotificationWindow() {
         notificationWindow = new Stage();
         notificationWindow.initOwner(Main.stage);
         notificationWindow.initModality(Modality.NONE);
@@ -26,10 +39,6 @@ public class NotificationWindowController {
         notificationWindow.setResizable(false);
         notificationWindow.setAlwaysOnTop(true);
         notificationWindow.setOnCloseRequest(windowEvent -> closeNotificationWindow());
-
-        notificationWindow.show();
-
-        Main.soundPlayer.playNotificationSound();
     }
 
     public void closeNotificationWindow() {
@@ -37,7 +46,10 @@ public class NotificationWindowController {
             notificationWindow.close();
             notificationWindow = null;
             notificationWindowOpen = false;
-            notificationPaneController.breakTimer.stop();
+            if (notificationPaneController.breakTimer != null)
+                notificationPaneController.breakTimer.stop();
+            if (onCloseNotification != null)
+                onCloseNotification.run();
         });
     }
 
@@ -47,5 +59,9 @@ public class NotificationWindowController {
 
     public void setNotificationWindowOpen(boolean notificationWindowOpen) {
         this.notificationWindowOpen = notificationWindowOpen;
+    }
+
+    public NotificationPaneController getNotificationPaneController() {
+        return notificationPaneController;
     }
 }

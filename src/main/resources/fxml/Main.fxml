@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane prefHeight="428.0" prefWidth="955.0" style="-fx-background-color: #37393d;" stylesheets="@../css/MainUIStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.dimagor555.eyesave.mainwindow.MainUIController">
+<Pane prefHeight="428.0" prefWidth="955.0" style="-fx-background-color: #37393d;" stylesheets="@../css/MainUIStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.dimagor555.eyesave.mainwindow.MainUIController">
    <children>
-      <Text fill="WHITE" layoutX="15.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eyesave will notificate you to take a break for your eyes" wrappingWidth="553.7294921875">
+      <Text fill="WHITE" layoutX="15.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eyesave will notificate you to take a break for your eyes" textAlignment="CENTER" wrappingWidth="553.7294921875">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Button fx:id="hideBtn" layoutX="477.0" layoutY="364.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Hide to tray" textFill="WHITE">
+      <Button fx:id="hideBtn" layoutX="106.0" layoutY="362.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Hide to tray" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Button fx:id="exitBtn" layoutX="348.0" layoutY="364.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Exit" textFill="WHITE">
+      <Button fx:id="exitBtn" layoutX="17.0" layoutY="362.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Exit" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Button fx:id="createNewProfileBtn" layoutX="111.0" layoutY="156.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Create new" textFill="WHITE">
+      <Button fx:id="createNewProfileBtn" layoutX="111.0" layoutY="142.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Create new" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
@@ -35,13 +31,13 @@
             <Font size="25.0" />
          </font></Label>
       <ChoiceBox fx:id="profileSelectChoiceBox" layoutX="111.0" layoutY="91.0" prefHeight="26.0" prefWidth="459.0" />
-      <Button fx:id="deleteBtn" layoutX="111.0" layoutY="282.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Delete" textFill="WHITE">
+      <Button fx:id="deleteBtn" layoutX="111.0" layoutY="251.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Delete" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="profileDeleteChoiceBox" layoutX="111.0" layoutY="231.0" prefHeight="26.0" prefWidth="459.0" />
-      <Label layoutX="17.0" layoutY="236.0" text="Delete:" textFill="WHITE">
+      <ChoiceBox fx:id="profileDeleteChoiceBox" layoutX="111.0" layoutY="200.0" prefHeight="26.0" prefWidth="459.0" />
+      <Label layoutX="17.0" layoutY="205.0" text="Delete:" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
@@ -51,39 +47,44 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <CheckBox fx:id="hideOnTrayCheckBox" layoutX="598.0" layoutY="79.0" mnemonicParsing="false" text="hide in tray at first run" textFill="WHITE">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="playSoundCheckBox" layoutX="598.0" layoutY="129.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="345.0" text="play notification sound" textFill="WHITE" wrapText="true">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </CheckBox>
-      <Label layoutX="674.0" layoutY="9.0" text="Some settings:" textFill="WHITE">
+      <Label layoutX="619.0" layoutY="14.0" text="Settings:" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="648.0" layoutY="240.0" text="Next notification in" textFill="WHITE">
+      <Label layoutX="704.0" layoutY="296.0" text="Next notification in" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="nextNotificationTimeLbl" alignment="CENTER" layoutX="648.0" layoutY="270.0" prefHeight="30.0" prefWidth="238.0" text="00:00" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="nextNotificationTimeLbl" alignment="CENTER" layoutX="704.0" layoutY="326.0" prefHeight="30.0" prefWidth="238.0" text="00:00" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="takeBreakeBtn" layoutX="689.0" layoutY="313.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Take a break" textFill="WHITE">
+      <Button fx:id="takeBreakeBtn" layoutX="745.0" layoutY="369.0" mnemonicParsing="false" style="-fx-background-color: #404245;" text="Take a break" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <CheckBox fx:id="addToStartupCheckBox" layoutX="598.0" layoutY="179.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="330.0" text="Launch at system startup" textFill="WHITE" wrapText="true">
+      <CheckBox fx:id="hideOnTrayCheckBox" layoutX="619.0" layoutY="61.0" mnemonicParsing="false" text="Hide in tray at first run" textFill="WHITE">
          <font>
-            <Font size="22.0" />
+            <Font size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="playSoundCheckBox" layoutX="619.0" layoutY="101.0" mnemonicParsing="false" text="Play notification sound" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="addToStartupCheckBox" layoutX="619.0" layoutY="141.0" mnemonicParsing="false" text="Launch at system startup" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="checkBoxRepeatNotification" layoutX="619.0" layoutY="181.0" mnemonicParsing="false" text="Repeat nofication every minute" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="18.0" />
          </font>
       </CheckBox>
    </children>
